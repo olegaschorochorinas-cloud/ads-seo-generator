@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent, ChangeEvent, useMemo } from "react";
+import { useState, type FormEvent, type ChangeEvent, useMemo } from "react";
 import {
   equipmentOptions,
   mainCategoryLabels,
@@ -167,7 +167,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="max-w-3xl">
           <p className="mb-4 inline-block rounded-full border border-white/20 px-3 py-1 text-sm text-white/70">
-            MVP v6 · brand style + output mode
+            MVP v4 · taxonomy + custom type
           </p>
 
           <h1 className="text-4xl font-bold leading-tight md:text-6xl">
@@ -307,7 +307,9 @@ export default function Home() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm text-white/70">Tonas</label>
+                  <label className="mb-2 block text-sm text-white/70">
+                    Tonas
+                  </label>
                   <select
                     name="tone"
                     value={formData.tone}
@@ -321,7 +323,9 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm text-white/70">Kalba</label>
+                  <label className="mb-2 block text-sm text-white/70">
+                    Kalba
+                  </label>
                   <select
                     name="language"
                     value={formData.language}
@@ -547,10 +551,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={() =>
-                        copyText(
-                          "SEO Meta Description",
-                          result.metaDescription
-                        )
+                        copyText("SEO Meta Description", result.metaDescription)
                       }
                       className="rounded-lg border border-white/10 px-3 py-1 text-sm text-white/80 hover:bg-white/10"
                     >
