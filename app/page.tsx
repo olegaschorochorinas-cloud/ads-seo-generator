@@ -303,37 +303,7 @@ outputMode: formData.outputMode,
                 />
               </div>
 
-              <div className="grid gap-4 md:grid-cols-2">
-                <div>
-                  <label className="mb-2 block text-sm text-white/70">Tonas</label>
-                  <select
-                    name="tone"
-                    value={formData.tone}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
-                  >
-                    <option value="professional">Profesionalus</option>
-                    <option value="premium">Premium</option>
-                    <option value="sales">Pardaviminis</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-sm text-white/70">Kalba</label>
-                  <select
-                    name="language"
-                    value={formData.language}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
-                  >
-                    <option value="lt">Lietuvių</option>
-                    <option value="en">English</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="grid gap-4 md:grid-cols-2">
+<div className="grid gap-4 md:grid-cols-2">
   <div>
     <label className="mb-2 block text-sm text-white/70">Tonas</label>
     <select
@@ -394,25 +364,25 @@ outputMode: formData.outputMode,
 </div>
 
 <div className="flex gap-3">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="flex-1 rounded-xl bg-white px-4 py-3 font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {loading ? "Generuojama..." : "Generuoti tekstus"}
-                </button>
+  <button
+    type="submit"
+    disabled={loading}
+    className="flex-1 rounded-xl bg-white px-4 py-3 font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+  >
+    {loading ? "Generuojama..." : "Generuoti tekstus"}
+  </button>
 
-                <button
-                  type="button"
-                  onClick={generateTexts}
-                  disabled={loading}
-                  className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  Regenerate
-                </button>
-              </div>
-            </div>
-          </form>
+  <button
+    type="button"
+    onClick={generateTexts}
+    disabled={loading}
+    className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60"
+  >
+    Regenerate
+  </button>
+</div>
+</div>
+</form>
 
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <div className="mb-4 flex items-center justify-between gap-4">
