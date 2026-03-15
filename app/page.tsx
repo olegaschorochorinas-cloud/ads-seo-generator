@@ -18,7 +18,7 @@ type FormData = {
   tone: string;
   language: string;
   brandStyle: string;
-outputMode: string;
+  outputMode: string;
 };
 
 type GenerateResult = {
@@ -49,7 +49,7 @@ export default function Home() {
     tone: "sales",
     language: "lt",
     brandStyle: "premium",
-outputMode: "google_ads",
+    outputMode: "google_ads",
   });
 
   const [result, setResult] = useState<GenerateResult | null>(null);
@@ -98,19 +98,19 @@ outputMode: "google_ads",
 
     try {
       const payload = {
-  productName: formData.productName,
-  mainCategory: mainCategoryLabels[formData.mainCategory],
-  subCategory: formData.subCategory,
-  customType: formData.customType.trim(),
-  category: buildCategoryLabel(),
-  description: formData.description,
-  usp: formData.usp,
-  keywords: formData.keywords,
-  tone: formData.tone,
-  language: formData.language,
-  brandStyle: formData.brandStyle,
-outputMode: formData.outputMode,
-};
+        productName: formData.productName,
+        mainCategory: mainCategoryLabels[formData.mainCategory],
+        subCategory: formData.subCategory,
+        customType: formData.customType.trim(),
+        category: buildCategoryLabel(),
+        description: formData.description,
+        usp: formData.usp,
+        keywords: formData.keywords,
+        tone: formData.tone,
+        language: formData.language,
+        brandStyle: formData.brandStyle,
+        outputMode: formData.outputMode,
+      };
 
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -167,7 +167,7 @@ outputMode: formData.outputMode,
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="max-w-3xl">
           <p className="mb-4 inline-block rounded-full border border-white/20 px-3 py-1 text-sm text-white/70">
-            MVP v4 · taxonomy + custom type
+            MVP v6 · brand style + output mode
           </p>
 
           <h1 className="text-4xl font-bold leading-tight md:text-6xl">
@@ -257,7 +257,9 @@ outputMode: formData.outputMode,
               </div>
 
               <div className="rounded-xl border border-white/10 bg-black/20 p-4">
-                <p className="mb-2 text-sm text-white/50">Galutinė kategorija AI modeliui</p>
+                <p className="mb-2 text-sm text-white/50">
+                  Galutinė kategorija AI modeliui
+                </p>
                 <p className="text-sm text-white/90">{buildCategoryLabel()}</p>
               </div>
 
@@ -303,86 +305,90 @@ outputMode: formData.outputMode,
                 />
               </div>
 
-<div className="grid gap-4 md:grid-cols-2">
-  <div>
-    <label className="mb-2 block text-sm text-white/70">Tonas</label>
-    <select
-      name="tone"
-      value={formData.tone}
-      onChange={handleChange}
-      className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
-    >
-      <option value="professional">Profesionalus</option>
-      <option value="premium">Premium</option>
-      <option value="sales">Pardaviminis</option>
-    </select>
-  </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label className="mb-2 block text-sm text-white/70">Tonas</label>
+                  <select
+                    name="tone"
+                    value={formData.tone}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
+                  >
+                    <option value="professional">Profesionalus</option>
+                    <option value="premium">Premium</option>
+                    <option value="sales">Pardaviminis</option>
+                  </select>
+                </div>
 
-  <div>
-    <label className="mb-2 block text-sm text-white/70">Kalba</label>
-    <select
-      name="language"
-      value={formData.language}
-      onChange={handleChange}
-      className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
-    >
-      <option value="lt">Lietuvių</option>
-      <option value="en">English</option>
-    </select>
-  </div>
-</div>
+                <div>
+                  <label className="mb-2 block text-sm text-white/70">Kalba</label>
+                  <select
+                    name="language"
+                    value={formData.language}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
+                  >
+                    <option value="lt">Lietuvių</option>
+                    <option value="en">English</option>
+                  </select>
+                </div>
+              </div>
 
-<div className="grid gap-4 md:grid-cols-2">
-  <div>
-    <label className="mb-2 block text-sm text-white/70">Brand style</label>
-    <select
-      name="brandStyle"
-      value={formData.brandStyle}
-      onChange={handleChange}
-      className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
-    >
-      <option value="premium">Premium</option>
-      <option value="sales">Akcijinis</option>
-      <option value="performance">Performance</option>
-      <option value="neutral">Neutralus</option>
-    </select>
-  </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label className="mb-2 block text-sm text-white/70">
+                    Brand style
+                  </label>
+                  <select
+                    name="brandStyle"
+                    value={formData.brandStyle}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
+                  >
+                    <option value="premium">Premium</option>
+                    <option value="sales">Akcijinis</option>
+                    <option value="performance">Performance</option>
+                    <option value="neutral">Neutralus</option>
+                  </select>
+                </div>
 
-  <div>
-    <label className="mb-2 block text-sm text-white/70">Output mode</label>
-    <select
-      name="outputMode"
-      value={formData.outputMode}
-      onChange={handleChange}
-      className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
-    >
-      <option value="google_ads">Google Ads</option>
-      <option value="seo">SEO</option>
-      <option value="universal">Universalus</option>
-    </select>
-  </div>
-</div>
+                <div>
+                  <label className="mb-2 block text-sm text-white/70">
+                    Output mode
+                  </label>
+                  <select
+                    name="outputMode"
+                    value={formData.outputMode}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
+                  >
+                    <option value="google_ads">Google Ads</option>
+                    <option value="seo">SEO</option>
+                    <option value="universal">Universalus</option>
+                  </select>
+                </div>
+              </div>
 
-<div className="flex gap-3">
-  <button
-    type="submit"
-    disabled={loading}
-    className="flex-1 rounded-xl bg-white px-4 py-3 font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
-  >
-    {loading ? "Generuojama..." : "Generuoti tekstus"}
-  </button>
+              <div className="flex gap-3">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="flex-1 rounded-xl bg-white px-4 py-3 font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {loading ? "Generuojama..." : "Generuoti tekstus"}
+                </button>
 
-  <button
-    type="button"
-    onClick={generateTexts}
-    disabled={loading}
-    className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60"
-  >
-    Regenerate
-  </button>
-</div>
-</div>
-</form>
+                <button
+                  type="button"
+                  onClick={generateTexts}
+                  disabled={loading}
+                  className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  Regenerate
+                </button>
+              </div>
+            </div>
+          </form>
 
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <div className="mb-4 flex items-center justify-between gap-4">
@@ -460,7 +466,9 @@ outputMode: formData.outputMode,
 
                 <div className="rounded-xl border border-white/10 bg-black/20 p-4">
                   <div className="mb-3 flex items-center justify-between gap-4">
-                    <p className="text-sm text-white/50">Google Ads Descriptions</p>
+                    <p className="text-sm text-white/50">
+                      Google Ads Descriptions
+                    </p>
                     <button
                       type="button"
                       onClick={() =>
@@ -533,11 +541,16 @@ outputMode: formData.outputMode,
 
                 <div className="rounded-xl border border-white/10 bg-black/20 p-4">
                   <div className="mb-2 flex items-center justify-between gap-4">
-                    <p className="text-sm text-white/50">SEO Meta Description</p>
+                    <p className="text-sm text-white/50">
+                      SEO Meta Description
+                    </p>
                     <button
                       type="button"
                       onClick={() =>
-                        copyText("SEO Meta Description", result.metaDescription)
+                        copyText(
+                          "SEO Meta Description",
+                          result.metaDescription
+                        )
                       }
                       className="rounded-lg border border-white/10 px-3 py-1 text-sm text-white/80 hover:bg-white/10"
                     >
