@@ -95,6 +95,7 @@ export default function Home() {
     setLoading(true);
     setError("");
     setCopied("");
+    setResult(null);
 
     try {
       const payload = {

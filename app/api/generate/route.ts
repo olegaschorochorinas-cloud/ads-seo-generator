@@ -9,7 +9,7 @@ const LIMITS = {
   description: 90,
   metaTitle: 60,
   metaDescription: 160,
-};
+} as const;
 
 type AIResult = {
   headlines: string[];
@@ -466,20 +466,18 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const {
-      productName,
-      mainCategory,
-      subCategory,
-      customType,
-      category,
-      description,
-      usp,
-      keywords,
-      tone,
-      language,
-      brandStyle,
-      outputMode,
-    } = body;
+    const productName = String(body.productName || "").trim();
+    const mainCategory = String(body.mainCategory || "").trim();
+    const subCategory = String(body.subCategory || "").trim();
+    const customType = String(body.customType || "").trim();
+    const category = String(body.category || "").trim();
+    const description = String(body.description || "").trim();
+    const usp = String(body.usp || "").trim();
+    const keywords = String(body.keywords || "").trim();
+    const tone = String(body.tone || "sales").trim();
+    const language = String(body.language || "lt").trim();
+    const brandStyle = String(body.brandStyle || "premium").trim();
+    const outputMode = String(body.outputMode || "google_ads").trim();
 
     if (!productName || !category || !description) {
       return Response.json(
@@ -512,8 +510,8 @@ export async function POST(request: Request) {
       LIMITS.description
     );
 
-    let metaTitle = trimToLimit(firstParsed.metaTitle, LIMITS.metaTitle);
-    let metaDescription = trimToLimit(
+    const metaTitle = trimToLimit(firstParsed.metaTitle, LIMITS.metaTitle);
+    const metaDescription = trimToLimit(
       firstParsed.metaDescription,
       LIMITS.metaDescription
     );
