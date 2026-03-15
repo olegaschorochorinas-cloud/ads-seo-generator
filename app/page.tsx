@@ -17,6 +17,8 @@ type FormData = {
   keywords: string;
   tone: string;
   language: string;
+  brandStyle: string;
+outputMode: string;
 };
 
 type GenerateResult = {
@@ -46,6 +48,8 @@ export default function Home() {
     keywords: "",
     tone: "sales",
     language: "lt",
+    brandStyle: "premium",
+outputMode: "google_ads",
   });
 
   const [result, setResult] = useState<GenerateResult | null>(null);
@@ -94,14 +98,19 @@ export default function Home() {
 
     try {
       const payload = {
-        productName: formData.productName,
-        category: buildCategoryLabel(),
-        description: formData.description,
-        usp: formData.usp,
-        keywords: formData.keywords,
-        tone: formData.tone,
-        language: formData.language,
-      };
+  productName: formData.productName,
+  mainCategory: mainCategoryLabels[formData.mainCategory],
+  subCategory: formData.subCategory,
+  customType: formData.customType.trim(),
+  category: buildCategoryLabel(),
+  description: formData.description,
+  usp: formData.usp,
+  keywords: formData.keywords,
+  tone: formData.tone,
+  language: formData.language,
+  brandStyle: formData.brandStyle,
+outputMode: formData.outputMode,
+};
 
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -324,6 +333,67 @@ export default function Home() {
               </div>
 
               <div className="flex gap-3">
+                <div className="grid gap-4 md:grid-cols-2">
+  <div>
+    <label className="mb-2 block text-sm text-white/70">Tonas</label>
+    <select
+      name="tone"
+      value={formData.tone}
+      onChange={handleChange}
+      className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
+    >
+      <option value="professional">Profesionalus</option>
+      <option value="premium">Premium</option>
+      <option value="sales">Pardaviminis</option>
+    </select>
+  </div>
+
+  <div>
+    <label className="mb-2 block text-sm text-white/70">Kalba</label>
+    <select
+      name="language"
+      value={formData.language}
+      onChange={handleChange}
+      className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
+    >
+      <option value="lt">Lietuvių</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+</div>
+
+<div className="grid gap-4 md:grid-cols-2">
+  <div>
+    <label className="mb-2 block text-sm text-white/70">Brand style</label>
+    <select
+      name="brandStyle"
+      value={formData.brandStyle}
+      onChange={handleChange}
+      className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
+    >
+      <option value="premium">Premium</option>
+      <option value="sales">Akcijinis</option>
+      <option value="performance">Performance</option>
+      <option value="neutral">Neutralus</option>
+    </select>
+  </div>
+
+  <div>
+    <label className="mb-2 block text-sm text-white/70">Output mode</label>
+    <select
+      name="outputMode"
+      value={formData.outputMode}
+      onChange={handleChange}
+      className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 outline-none"
+    >
+      <option value="google_ads">Google Ads</option>
+      <option value="seo">SEO</option>
+      <option value="universal">Universalus</option>
+    </select>
+  </div>
+</div>
+
+<div className="flex gap-3">
                 <button
                   type="submit"
                   disabled={loading}
